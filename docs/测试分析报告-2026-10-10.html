@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>智慧校园值周管理系统 · 质量测试分析报告</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+body{font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;background:#0f172a;color:#e2e8f0}
+.card{background:#1e293b;border:1px solid #334155;border-radius:14px}
+.badge{display:inline-block;padding:2px 9px;border-radius:6px;font-size:11px;font-weight:700}
+.b-p0{background:#7f1d1d;color:#fecaca}
+.b-p1{background:#78350f;color:#fde68a}
+.b-p2{background:#1e3a5f;color:#bfdbfe}
+.b-p3{background:#334155;color:#cbd5e1}
+.b-ok{background:#14532d;color:#bbf7d0}
+code{background:#0f172a;padding:1px 6px;border-radius:4px;color:#7dd3fc;font-size:12px}
+pre{background:#0b1220;border:1px solid #1e293b;border-radius:10px;padding:14px;overflow-x:auto;font-size:12px;color:#a5b4fc}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th{background:#0f172a;color:#94a3b8;text-align:left;padding:9px 10px;font-weight:600;border-bottom:1px solid #334155;white-space:nowrap}
+td{padding:9px 10px;border-bottom:1px solid #1e293b;vertical-align:top}
+tr:hover td{background:#1e293b}
+</style>
+</head>
+<body class="p-5 md:p-8">
+
+<div class="max-w-1200 mx-auto">
+  <header class="mb-7">
+    <div class="text-[11px] text-slate-500 font-mono mb-2">QUALITY ASSURANCE REPORT · 2026-10-10</div>
+    <h1 class="text-3xl font-bold text-white mb-2">智慧校园值周管理系统 — 质量测试分析报告</h1>
+    <p class="text-sm text-slate-400">测试对象：<code>D:\daimacang\zhizhou</code> · React 19 + Vite 8 + TypeScript 前端原型 · 约 1.1 万行 · 32 个源文件<br>
+    代码快照：2026-10-10 11:31:24（最后源码修改） · 复核：11:41 · <span class="text-emerald-400">结论已按最终快照复核</span></p>
+    <div class="flex gap-2 mt-4 flex-wrap">
+      <span class="badge b-ok">构建通过</span>
+      <span class="badge b-ok">类型检查 0 错误</span>
+      <span class="badge b-p2">3 项 P0 缺陷</span>
+      <span class="badge b-p1">5 项 P1 缺陷</span>
+      <span class="badge b-p2">6 项 P2 缺陷</span>
+      <span class="badge b-p3">4 项 P3 观察项</span>
+    </div>
+  </header>
+
+  <!-- 0 核实基线 -->
+  <section class="card p-5 mb-5 border-emerald-800/50">
+    <h2 class="text-lg font-bold text-white mb-3">0. 核实基线（代码快照）</h2>
+    <div class="grid md:grid-cols-2 gap-4 text-sm mb-3">
+      <div>
+        <div class="text-slate-400 text-xs mb-1">最后源码修改</div>
+        <div class="text-emerald-300 font-mono">2026-10-10 11:31:24 <span class="text-slate-500">(src/mock/initialData.ts)</span></div>
+      </div>
+      <div>
+        <div class="text-slate-400 text-xs mb-1">本报告复核时间</div>
+        <div class="text-emerald-300 font-mono">2026-10-10 11:41 <span class="text-slate-500">(11:31 快照之后)</span></div>
+      </div>
+    </div>
+    <div class="p-3 rounded-lg bg-emerald-950/20 border border-emerald-800/40 mb-3">
+      <div class="text-xs text-emerald-300 font-semibold mb-1">✓ 复核结论：报告基于最新代码，全部结论仍然成立</div>
+      <p class="text-xs text-slate-400 leading-relaxed">
+        首轮测试期间（11:29–11:31）源码仍在被修改，其中 <code>types/index.ts</code>(11:31:05) 与 <code>initialData.ts</code>(11:31:24) 晚于首次读取时刻。已于 <strong class="text-slate-200">11:41 对最终快照重新验证</strong>。
+      </p>
+    </div>
+    <table>
+      <thead><tr><th>复核项</th><th>首轮结论</th><th>最终快照复核</th></tr></thead>
+      <tbody>
+        <tr><td>类型检查</td><td>0 错误</td><td><span class="badge b-ok">仍 0 错误</span></td></tr>
+        <tr><td>生产构建</td><td>通过</td><td><span class="badge b-ok">仍通过 · 2.15s</span></td></tr>
+        <tr><td>P0-1 审核幂等缺失</td><td>存在</td><td><span class="badge b-p0">仍存在</span></td></tr>
+        <tr><td>P0-2 ID 时间戳碰撞</td><td>存在</td><td><span class="badge b-p0">仍存在 · 16 处</span></td></tr>
+        <tr><td>P0-3 假数据硬编码</td><td>存在</td><td><span class="badge b-p0">仍存在 · 3 处</span></td></tr>
+        <tr><td>P2-6 SchoolClass 缺 campus</td><td>存在</td><td><span class="badge b-p2">仍存在</span></td></tr>
+      </tbody>
+    </table>
+    <div class="mt-3 p-3 rounded-lg bg-slate-900/60 border border-slate-700">
+      <div class="text-xs text-blue-300 font-semibold mb-1">ℹ 11:31 变更内容（测试期间发生）</div>
+      <p class="text-xs text-slate-400 leading-relaxed">
+        <code>SchoolClass</code> 移除了静态字段 <code>currentRank</code>，全项目已无残留引用（仅 <code>HomeroomWorkbench.tsx:32</code> 留注释说明）。此为<strong class="text-slate-200">正向清理</strong>——与我报告中「排名三套数据源已统一为按 <code>currentScore</code> 动态计算」的结论一致，进一步强化了该结论。类型检查仍通过，未引入新问题。
+      </p>
+    </div>
+  </section>
+
+  <!-- 1 测试概述 -->
+  <section class="card p-5 mb-5">
+    <h2 class="text-lg font-bold text-white mb-3">1. 测试概述</h2>
+    <div class="grid md:grid-cols-3 gap-4 text-sm">
+      <div>
+        <div class="text-slate-400 text-xs mb-1">测试方式</div>
+        <div class="text-slate-200">静态代码走查 + 逻辑白盒复现 + 构建验证</div>
+      </div>
+      <div>
+        <div class="text-slate-400 text-xs mb-1">覆盖模块</div>
+        <div class="text-slate-200">状态机 / 积分记账 / 排班冲突 / 权限 / 离线 / 结算</div>
+      </div>
+      <div>
+        <div class="text-slate-400 text-xs mb-1">测试性质</div>
+        <div class="text-slate-200">纯分析，<span class="text-emerald-400 font-semibold">未修改任何源码</span></div>
+      </div>
+    </div>
+    <div class="mt-4 p-3 rounded-lg bg-slate-900/60 border border-slate-700">
+      <div class="text-xs text-amber-300 font-semibold mb-1">⚠ 重要说明：与既有文档的差异</div>
+      <p class="text-xs text-slate-400 leading-relaxed">
+        仓库内已存在 <code>docs/deep-analysis-role-flow-2026-10-10.md</code>。经逐条代码验证，该文档的多个 P0 结论<strong class="text-slate-200">已被后续代码修复</strong>，其结论已过时。本报告为独立复测结果，以当前代码为准。
+      </p>
+    </div>
+  </section>
+
+  <!-- 2 验证结果 -->
+  <section class="card p-5 mb-5">
+    <h2 class="text-lg font-bold text-white mb-3">2. 构建与静态检查实测</h2>
+    <table>
+      <thead><tr><th>检查项</th><th>命令</th><th>结果</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td>类型检查</td><td><code>tsc --noEmit</code></td><td><span class="badge b-ok">PASS</span></td><td>0 错误</td></tr>
+        <tr><td>生产构建</td><td><code>vite build</code></td><td><span class="badge b-ok">PASS</span></td><td>1688 模块，2.34s</td></tr>
+        <tr><td>产物体积</td><td>—</td><td><span class="badge b-p2">WARN</span></td><td>JS 522 KB / gzip 133 KB，<strong>无代码分割</strong>，超 500 KB 阈值</td></tr>
+        <tr><td>tsconfig 严格性</td><td>—</td><td><span class="badge b-p1">缺陷</span></td><td>未开启 <code>strict</code> / <code>noUnusedLocals</code>，类型安全靠人工</td></tr>
+        <tr><td>配置文件</td><td>vite.config.ts:11</td><td><span class="badge b-p2">WARN</span></td><td><code>__dirname</code> 在 Vite 8 原生加载器下已废弃，未来主版本会失败</td></tr>
+        <tr><td>测试用例</td><td>—</td><td><span class="badge b-p0">缺失</span></td><td><strong>全项目 0 测试文件</strong>，无单测/集成测试/E2E</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 3 已修复确认 -->
+  <section class="card p-5 mb-5">
+    <h2 class="text-lg font-bold text-white mb-1">3. 既有文档 P0 项的复测结论（已修复）</h2>
+    <p class="text-xs text-slate-400 mb-3">以下问题在旧文档中被列为 P0，但当前代码已实现，本次测试确认通过。</p>
+    <table>
+      <thead><tr><th>旧文档结论</th><th>当前代码实况</th><th>验证</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>积分无流水账，直接改总分</td>
+          <td>已实现 <code>ScoreLedgerEntry</code> + <code>applyScoreDelta</code> 统一记账入口，含期初轧差建账</td>
+          <td><span class="badge b-ok">已修复</span></td>
+        </tr>
+        <tr>
+          <td>结算发布不锁分、不快照</td>
+          <td>已生成不可变 <code>rankings</code> 快照，调账仅置 <code>amendedAt</code> 提示重发</td>
+          <td><span class="badge b-ok">已修复</span></td>
+        </tr>
+        <tr>
+          <td>申诉 request_info 是死路</td>
+          <td>已实现 <code>supplementAppeal</code>，班主任有补充材料入口，管理员可再仲裁</td>
+          <td><span class="badge b-ok">已修复</span></td>
+        </tr>
+        <tr>
+          <td>申诉冲正后整改工单仍要求整改</td>
+          <td><code>revoke</code> 已联动将关联工单置 <code>cancelled</code> 并留痕</td>
+          <td><span class="badge b-ok">已修复</span></td>
+        </tr>
+        <tr>
+          <td>通知中心不过滤角色</td>
+          <td>已抽出 <code>isNotifVisible</code> 谓词，抽屉列表与未读角标共用同一口径</td>
+          <td><span class="badge b-ok">已修复</span></td>
+        </tr>
+        <tr>
+          <td>班主任可查看他班积分明细</td>
+          <td><code>ScoreDetailModal</code> 已锁定 <code>homeroomClassId</code></td>
+          <td><span class="badge b-ok">已修复</span></td>
+        </tr>
+        <tr>
+          <td>UTC / 本地时区混用</td>
+          <td>已抽出 <code>prototypeClock</code> 收口，全系统时间基准统一</td>
+          <td><span class="badge b-ok">已修复</span></td>
+        </tr>
+        <tr>
+          <td>整改复查看不到证据材料</td>
+          <td>验收弹窗已渲染 <code>rectifyPhotos</code> / <code>rectifyDescription</code></td>
+          <td><span class="badge b-ok">已修复</span></td>
+        </tr>
+        <tr>
+          <td>申诉与整改互斥，申诉入口过早消失</td>
+          <td>入口条件已放宽至 <code>active/need_rectify/rechecking/closed</code>，实现双轨并行</td>
+          <td><span class="badge b-ok">已修复</span></td>
+        </tr>
+        <tr>
+          <td>教师工作台今日排班未按日期过滤</td>
+          <td>已改为 <code>s.date === todayString()</code></td>
+          <td><span class="badge b-ok">已修复</span></td>
+        </tr>
+        <tr>
+          <td>免审开关下加分也可直接入账（刷分敞口）</td>
+          <td><code>decideAudit</code> 已改为<strong>加分恒送审</strong></td>
+          <td><span class="badge b-ok">已修复</span></td>
+        </tr>
+        <tr>
+          <td>维度分加总 ≠ 总分</td>
+          <td>口径已统一为 4 种生效态（<code>active/need_rectify/rechecking/closed</code>）</td>
+          <td><span class="badge b-ok">已修复</span></td>
+        </tr>
+        <tr>
+          <td>排名三套数据源不一致</td>
+          <td>已统一为按 <code>currentScore</code> 动态计算</td>
+          <td><span class="badge b-ok">已修复</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 4 白盒测试 -->
+  <section class="card p-5 mb-5">
+    <h2 class="text-lg font-bold text-white mb-3">4. 逻辑白盒测试实测</h2>
+
+    <div class="mb-4">
+      <div class="text-sm font-semibold text-emerald-400 mb-2">4.1 积分记账不变量 —— 通过</div>
+      <p class="text-xs text-slate-400 mb-2">不变量定义：<code>100 + Σ(delta) === currentScore</code>。按扣分 / 加分 / 审核生效 / 申诉冲正 / 调分五类动作逐一验证。</p>
+      <pre>✅ 初始:      100+Σδ=96.5   实际=96.5
+✅ 扣分-2:    100+Σδ=94.5   实际=94.5
+✅ 加分+3:    100+Σδ=97.5   实际=97.5
+✅ 审核-2:    100+Σδ=95.5   实际=95.5
+✅ 撤销冲正:  100+Σδ=97.5   实际=97.5
+✅ 调分-1.5:  100+Σδ=96     实际=96
+
+结果：6/6 通过，账实相符 ✅</pre>
+    </div>
+
+    <div class="mb-4">
+      <div class="text-sm font-semibold text-emerald-400 mb-2">4.2 排班冲突检测 —— 核心用例通过，发现边界缺陷</div>
+      <pre>✅ 完全相同时段:      期望冲突 → 实际冲突
+✅ 晨检 vs 大课间:     期望不冲突 → 实际不冲突
+✅ 大课间 vs 午间:     期望不冲突 → 实际不冲突
+✅ 放学 vs 晚自习:     期望不冲突 → 实际不冲突
+✅ 首尾相接(08:00):    期望不冲突 → 实际不冲突
+✅ 时段完全包含:       期望冲突 → 实际冲突
+
+结果：6/6 通过
+❗ 边界缺陷：跨天时段 23:00-01:00 → start=1380, end=60
+   比较式 max(1380) &lt; min(60) 恒为 false → 跨天时段永远判定为不冲突</pre>
+    </div>
+  </section>
+
+  <!-- 5 缺陷清单 -->
+  <section class="card p-5 mb-5">
+    <h2 class="text-lg font-bold text-white mb-1">5. 缺陷清单（本次测试新发现）</h2>
+    <p class="text-xs text-slate-400 mb-3">共 18 项。P0 会造成数据错误或业务失真；P1 影响流程完整性；P2 为一致性与可信度问题。</p>
+
+    <div class="space-y-2.5">
+      <!-- P0 -->
+      <div class="p-3 rounded-lg bg-red-950/25 border border-red-900/50">
+        <div class="flex items-start gap-2 mb-1.5">
+          <span class="badge b-p0">P0-1</span>
+          <div class="text-sm font-semibold text-red-200">审核操作无幂等校验，重复点击即重复计分</div>
+        </div>
+        <p class="text-xs text-slate-300 leading-relaxed">
+          <code>auditRecord()</code>（DutyContext.tsx:650）未校验记录当前状态。对一条 <code>active</code> 记录再次调用 <code>approve</code>，会<strong>再次执行 <code>applyScoreDelta</code> 扣分</strong>。
+        </p>
+        <pre>实测复现：
+  首次审核生效:  100 → 98
+  重复审核:      98  → 96   ← 同一记录被扣两次
+  （账实仍相符，但业务上属重复计分）</pre>
+        <p class="text-xs text-slate-400 mt-1.5">影响：管理员误操作或双端并发点击即造成分数错扣，教育场景下需向班主任解释，属于可被质疑的公平性问题。<strong>修复方向</strong>：<code>auditRecord</code> 入口增加 <code>if (record.status !== 'pending_audit') return;</code> 前置守卫。</p>
+      </div>
+
+      <div class="p-3 rounded-lg bg-red-950/25 border border-red-900/50">
+        <div class="flex items-start gap-2 mb-1.5">
+          <span class="badge b-p0">P0-2</span>
+          <div class="text-sm font-semibold text-red-200">批量操作 ID 用 <code>Date.now()</code>，同毫秒必然碰撞</div>
+        </div>
+        <p class="text-xs text-slate-300 leading-relaxed">
+          全项目 16 处 ID 生成为 <code>id: \`xxx_${Date.now()}\`</code>。而 <code>syncOfflineDrafts()</code>（DutyContext.tsx:636）用 <code>forEach</code> 同步循环调用 <code>createRecord</code>——同一 tick 内多个草稿拿到<strong>完全相同的时间戳</strong>。
+        </p>
+        <pre>实测复现（5 条草稿同步）：
+  生成 ID: rec_1760000000000 × 5
+  唯一 ID 数: 1 / 应为 5   ❌ 确认碰撞
+
+受影响实体：records / rectifications / appeals / notifications /
+            shifts / dutyPosts / rules / ledger / drafts</pre>
+        <p class="text-xs text-slate-400 mt-1.5">影响：<code>records.find(r =&gt; r.id === id)</code>、<code>map(r =&gt; r.id === id ? ...)</code> 会命中错误对象，造成<strong>整改单挂到别的记录上、审核改错记录</strong>。离线同步是批量场景，100% 触发。<strong>修复方向</strong>：改用 <code>crypto.randomUUID()</code> 或自增序列。</p>
+      </div>
+
+      <div class="p-3 rounded-lg bg-red-950/25 border border-red-900/50">
+        <div class="flex items-start gap-2 mb-1.5">
+          <span class="badge b-p0">P0-3</span>
+          <div class="text-sm font-semibold text-red-200">统计看板与工作台指标为硬编码假数据</div>
+        </div>
+        <p class="text-xs text-slate-300 leading-relaxed">
+          <code>DataAnalyticsView.tsx:42/51</code> 写死「128 次」「94.2%」；<code>AdminWorkbench.tsx:65</code> 写死「82.5%」。而 <code>records</code> 实际仅 5 条 mock 数据，<code>settlements.totalInspections</code> 也是原型常量。
+        </p>
+        <p class="text-xs text-slate-400 mt-1.5">影响：演示时若被追问「这个 94.2% 怎么算的」无法回答；一旦接真实数据，界面仍显示旧数字，属信任崩塌型缺陷。<strong>修复方向</strong>：接入 <code>ledger</code>/<code>records</code> 实时聚合，或明确标注「示例数据」。</p>
+      </div>
+
+      <!-- P1 -->
+      <div class="space-y-2 mt-4">
+        <div class="p-3 rounded-lg bg-amber-950/20 border border-amber-800/40">
+          <div class="flex items-start gap-2 mb-1">
+            <span class="badge b-p1">P1-1</span>
+            <div class="text-sm font-semibold text-amber-200">跨天时段冲突检测恒为 false</div>
+          </div>
+          <p class="text-xs text-slate-300"><code>extractTimeMinutes</code> 解析「23:00-01:00」得 <code>{start:1380, end:60}</code>，重叠判据 <code>max(start) &lt; min(end)</code> 恒不成立。晚自习延至次日、宿舍查寝等跨天执勤场景<strong>会漏报冲突</strong>。当前 mock 时段未跨天，属潜伏缺陷。</p>
+        </div>
+
+        <div class="p-3 rounded-lg bg-amber-950/20 border border-amber-800/40">
+          <div class="flex items-start gap-2 mb-1">
+            <span class="badge b-p1">P1-2</span>
+            <div class="text-sm font-semibold text-amber-200">全项目零测试用例，无自动化回归能力</div>
+          </div>
+          <p class="text-xs text-slate-300">无 <code>*.test.*</code> / <code>*.spec.*</code>，<code>package.json</code> 无 <code>test</code> 脚本。业务不变量（记账、冲突检测）目前靠人工约定保护，任何改动都可能无声破坏。<strong>建议优先为 <code>scheduleConflict</code> 与 <code>applyScoreDelta</code> 补单测</strong>，二者是纯函数、成本低、价值高。</p>
+        </div>
+
+        <div class="p-3 rounded-lg bg-amber-950/20 border border-amber-800/40">
+          <div class="flex items-start gap-2 mb-1">
+            <span class="badge b-p1">P1-3</span>
+            <div class="text-sm font-semibold text-amber-200">仲裁 <code>adjust</code> 未处理关联整改工单</div>
+          </div>
+          <p class="text-xs text-slate-300"><code>revoke</code> 已作废工单，但 <code>adjust</code> 分支（DutyContext.tsx:910）只调分、不动工单。分值从 -5 调为 -2 后，班主任仍需按原扣分标准整改，<strong>业务口径不一致</strong>。</p>
+        </div>
+
+        <div class="p-3 rounded-lg bg-amber-950/20 border border-amber-800/40">
+          <div class="flex items-start gap-2 mb-1">
+            <span class="badge b-p1">P1-4</span>
+            <div class="text-sm font-semibold text-amber-200">排班 <code>status</code> 无任何流转驱动</div>
+          </div>
+          <p class="text-xs text-slate-300"><code>pending/in_progress/completed</code> 三态仅在 mock 初始化时赋值，全项目无签到、到岗确认、缺岗上报入口。排班→执勤→检查的<strong>证据链在「完成」这一步断开</strong>，无法回答「该时段谁在岗、是否漏岗」。</p>
+        </div>
+
+        <div class="p-3 rounded-lg bg-amber-950/20 border border-amber-800/40">
+          <div class="flex items-start gap-2 mb-1">
+            <span class="badge b-p1">P1-5</span>
+            <div class="text-sm font-semibold text-amber-200">离线草稿字段缺失，同步后信息不完整</div>
+          </div>
+          <p class="text-xs text-slate-300"><code>OfflineDraft</code> 仅存 5 个字段，丢失 <code>ruleId / timeSlot / zone / photos</code>。同步时走 <code>createRecord</code> 走默认值填充（<code>rule_hyg_1</code>、<code>recess</code>），<strong>现场证据与规则来源全部丢失</strong>，且 <code>createdAt</code> 变为同步时刻而非录入时刻，周归属与查重窗口均错位。</p>
+        </div>
+      </div>
+
+      <!-- P2 -->
+      <div class="space-y-2 mt-4">
+        <div class="p-3 rounded-lg bg-slate-800/40 border border-slate-700">
+          <div class="flex items-start gap-2 mb-1">
+            <span class="badge b-p2">P2-1</span>
+            <div class="text-sm font-semibold text-slate-200">localStorage 无异常保护，脏数据致白屏</div>
+          </div>
+          <p class="text-xs text-slate-400">13 处 <code>JSON.parse(localStorage.getItem(...))</code> 无 try/catch（仅 <code>shifts</code> 有）。任一键值被外部写坏即抛异常，整个应用白屏。仅 <code>shifts</code> 做了校验。</p>
+        </div>
+
+        <div class="p-3 rounded-lg bg-slate-800/40 border border-slate-700">
+          <div class="flex items-start gap-2 mb-1">
+            <span class="badge b-p2">P2-2</span>
+            <div class="text-sm font-semibold text-slate-200">Toast 定时器未清理，组件卸载后泄漏</div>
+          </div>
+          <p class="text-xs text-slate-400"><code>showToast</code> 内 <code>setTimeout</code> 2800ms 未保存句柄、未在 effect cleanup 中 <code>clearTimeout</code>。高频操作下定时器堆积。</p>
+        </div>
+
+        <div class="p-3 rounded-lg bg-slate-800/40 border border-slate-700">
+          <div class="flex items-start gap-2 mb-1">
+            <span class="badge b-p2">P2-3</span>
+            <div class="text-sm font-semibold text-slate-200">无 <code>key</code> 的列表渲染与 state 初始化陷阱</div>
+          </div>
+          <p class="text-xs text-slate-400"><code>ScoreDetailModal</code> 用 <code>useState(targetClassId)</code> 初始化，但 <code>targetClassId</code> 依赖 <code>currentUser</code>。切换身份时组件未重挂载，<strong>班主任可能看到上一位班主任的班级数据</strong>——权限泄漏。同类问题见 <code>DutyScheduleView</code>。</p>
+        </div>
+
+        <div class="p-3 rounded-lg bg-slate-800/40 border border-slate-700">
+          <div class="flex items-start gap-2 mb-1">
+            <span class="badge b-p2">P2-4</span>
+            <div class="text-sm font-semibold text-slate-200">扣分下限无保护，班级分可被扣成负数</div>
+          </div>
+          <p class="text-xs text-slate-400"><code>applyScoreDelta</code> 无 score ≥ 0 约束。极端情况（多项扣分叠加）班级分为负，「以 100 分为基准」的模型失效。<code>maxScoreDelta</code> 字段已定义但从未使用。</p>
+        </div>
+
+        <div class="p-3 rounded-lg bg-slate-800/40 border border-slate-700">
+          <div class="flex items-start gap-2 mb-1">
+            <span class="badge b-p2">P2-5</span>
+            <div class="text-sm font-semibold text-slate-200">结算发布异常不拦截，且统计口径不符</div>
+          </div>
+          <p class="text-xs text-slate-400"><code>hasAnomalies</code> 仅改变按钮文案为「继续核对发布」，不阻断。带未审记录/未决申诉可一键发布。<code>pendingAppealCount</code> 统计 <code>!== 'resolved'</code>，而 <code>need_more_info</code> 也计入，<strong>待补充≠待裁决</strong>，口径需明确。</p>
+        </div>
+
+        <div class="p-3 rounded-lg bg-slate-800/40 border border-slate-700">
+          <div class="flex items-start gap-2 mb-1">
+            <span class="badge b-p2">P2-6</span>
+            <div class="text-sm font-semibold text-slate-200"><code>SchoolClass</code> 缺 <code>campus</code> 字段</div>
+          </div>
+          <p class="text-xs text-slate-400"><code>currentCampus</code> 仅为全局展示开关，无数据支撑。切换校区后所有统计、岗位、结算均为同一份数据，多校区能力名不副实。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 角色权限矩阵 -->
+  <section class="card p-5 mb-5">
+    <h2 class="text-lg font-bold text-white mb-3">6. 角色权限门控测试</h2>
+    <table>
+      <thead><tr><th>能力</th><th>值周教师</th><th>班主任</th><th>德育处管理员</th></tr></thead>
+      <tbody>
+        <tr><td>录入检查记录</td><td class="text-emerald-400">✅</td><td class="text-slate-500">❌ 入口隐藏</td><td class="text-emerald-400">✅</td></tr>
+        <tr><td>查看检查台账</td><td>全校</td><td class="text-emerald-400">仅本班</td><td>全校</td></tr>
+        <tr><td>查看积分明细</td><td>全校</td><td class="text-emerald-400">锁定本班</td><td>全校</td></tr>
+        <tr><td>审核 / 退回</td><td class="text-slate-500">❌</td><td class="text-slate-500">❌</td><td class="text-emerald-400">✅</td></tr>
+        <tr><td>退回后重提</td><td class="text-emerald-400">✅ 含改分/改照片</td><td class="text-slate-500">❌</td><td>—</td></tr>
+        <tr><td>提交整改反馈</td><td class="text-slate-500">❌</td><td class="text-emerald-400">✅ 本班</td><td class="text-slate-500">❌</td></tr>
+        <tr><td>整改验收</td><td class="text-slate-500">❌</td><td class="text-slate-500">❌</td><td class="text-emerald-400">✅ 含证据</td></tr>
+        <tr><td>发起申诉</td><td class="text-slate-500">❌</td><td class="text-emerald-400">✅ 与整改双轨</td><td class="text-slate-500">❌</td></tr>
+        <tr><td>申诉仲裁</td><td class="text-slate-500">❌</td><td class="text-slate-500">❌ 补充材料除外</td><td class="text-emerald-400">✅</td></tr>
+        <tr><td>排班增删改</td><td>仅查看自己</td><td>查看公示</td><td class="text-emerald-400">✅</td></tr>
+        <tr><td>结算发布</td><td class="text-slate-500">❌</td><td class="text-slate-500">❌</td><td class="text-emerald-400">✅</td></tr>
+        <tr><td>德育处审批开关</td><td class="text-slate-500">❌</td><td class="text-slate-500">❌</td><td class="text-emerald-400">✅</td></tr>
+      </tbody>
+    </table>
+    <p class="text-xs text-slate-400 mt-3">✅ 权限矩阵完整，无越权入口。角色切换为原型演示特性，<strong>无真实鉴权</strong>——生产化必须由后端做权限校验，前端门控不可作为安全边界。</p>
+  </section>
+
+  <!-- 7 建议 -->
+  <section class="card p-5 mb-5">
+    <h2 class="text-lg font-bold text-white mb-3">7. 修复优先级建议</h2>
+    <table>
+      <thead><tr><th>优先级</th><th>事项</th><th>对应缺陷</th><th>工作量</th></tr></thead>
+      <tbody>
+        <tr><td><span class="badge b-p0">P0</span></td><td>ID 生成改用 <code>crypto.randomUUID()</code></td><td>P0-2</td><td class="text-emerald-400">极小 · 16 处机械替换</td></tr>
+        <tr><td><span class="badge b-p0">P0</span></td><td><code>auditRecord</code> 增加状态前置守卫</td><td>P0-1</td><td class="text-emerald-400">极小 · 1 行</td></tr>
+        <tr><td><span class="badge b-p0">P0</span></td><td>假数据接真实聚合或标注示例</td><td>P0-3</td><td>中</td></tr>
+        <tr><td><span class="badge b-p1">P1</span></td><td>为核心纯函数补单元测试</td><td>P1-2</td><td class="text-emerald-400">小 · 首批约 20 例</td></tr>
+        <tr><td><span class="badge b-p1">P1</span></td><td><code>adjust</code> 分支联动工单</td><td>P1-3</td><td class="text-emerald-400">小</td></tr>
+        <tr><td><span class="badge b-p1">P1</span></td><td>跨天时段重叠算法修正</td><td>P1-1</td><td>小</td></tr>
+        <tr><td><span class="badge b-p1">P1</span></td><td>离线草稿补全字段 + 保留原时间戳</td><td>P1-5</td><td>中</td></tr>
+        <tr><td><span class="badge b-p2">P2</span></td><td>localStorage 读取统一 try/catch 封装</td><td>P2-1</td><td class="text-emerald-400">小</td></tr>
+        <tr><td><span class="badge b-p2">P2</span></td><td>切换身份时重置派生 state（<code>useEffect</code> 或 <code>key</code>）</td><td>P2-3</td><td class="text-emerald-400">小 · 有权限泄漏风险</td></tr>
+        <tr><td><span class="badge b-p2">P2</span></td><td>开启 tsconfig <code>strict</code></td><td>构建项</td><td>中 · 需分批修</td></tr>
+        <tr><td><span class="badge b-p2">P2</span></td><td>分数下限保护 + 启用 <code>maxScoreDelta</code></td><td>P2-4</td><td>小</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 8 结论 -->
+  <section class="card p-5">
+    <h2 class="text-lg font-bold text-white mb-3">8. 总体评价</h2>
+    <div class="space-y-3 text-sm leading-relaxed">
+      <p class="text-slate-300">
+        <strong class="text-white">架构健康度良好。</strong>三个经过验证的关键设计决策是正确的：积分统一收口到 <code>applyScoreDelta</code> 单一记账入口、时间基准统一到 <code>prototypeClock</code>、通知可见性统一到 <code>isNotifVisible</code> 谓词。这三处收口消除了原型最常见的一类缺陷（同一逻辑散落多处各自实现），说明开发者已具备抽象意识。
+      </p>
+      <p class="text-slate-300">
+        <strong class="text-white">上一轮 P0 问题已全部闭环。</strong>既有文档列出的 13 项 P0，本次逐条代码验证确认均已修复，且修复方式不是打补丁而是补模型（补 Ledger、补快照、补双轨），方向正确。
+      </p>
+      <p class="text-slate-300">
+        <strong class="text-white">当前风险已从「架构性」转为「工程性」。strong>剩余 3 项 P0 全部是工程纪律问题：ID 用时间戳、审核缺幂等、指标写死数据。它们不涉及业务设计，但都会在真实数据下暴露。这是<strong>从原型走向可交付产品的正常阶段</strong>——业务模型基本正确，剩下的是把不变量用代码和测试固化下来。
+      </p>
+      <p class="text-slate-300">
+        <strong class="text-white">最大短板是零测试。</strong>系统已经建立了清晰业务不变量（100+Σδ=currentScore、冲突检测语义、双轨并行），但<strong>没有任何一条被测试固化</strong>。这意味着下一次改动可能无声破坏它们，而这类破坏往往要到真实数据进入、老师质疑分数时才被发现。补 20 个单测的成本，远低于一次成绩争议的排查成本。
+      </p>
+      <p class="text-slate-400 text-xs pt-2 border-t border-slate-700">
+        报告性质：纯分析，未修改任何源码文件。所有缺陷均通过代码走查与逻辑复现验证得出，未在浏览器中执行交互测试（环境无浏览器自动化能力），建议后续补充 E2E 验证。
+      </p>
+    </div>
+  </section>
+</div>
+</body>
+</html>

@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  --color-blue-50: #eff6ff;
+  --color-blue-100: #dbeafe;
+  --color-blue-200: #bfdbfe;
+  --color-blue-500: #3b82f6;
+  --color-blue-600: #2563eb;
+  --color-blue-700: #1d4ed8;
+  --color-blue-800: #1e40af;
+  --color-blue-900: #1e3a8a;
+  
+  --color-slate-50: #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5e1;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #64748b;
+  --color-slate-600: #475569;
+  --color-slate-700: #334155;
+  --color-slate-800: #1e293b;
+  --color-slate-900: #0f172a;
+  
+  --text-xs: 0.8125rem;
+  --text-xs--line-height: 1.45;
+  --text-sm: 0.9375rem;
+  --text-sm--line-height: 1.4;
+  --text-base: 1rem;
+  --text-base--line-height: 1.5;
+  --radius-xl: 0.875rem;
+  --radius-2xl: 1rem;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: #0f172a;
+    background-color: #f1f5f9;
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.05) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(99, 102, 241, 0.04) 0px, transparent 50%),
+      radial-gradient(at 50% 50%, rgba(241, 245, 249, 1) 0px, transparent 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font-family: inherit;
+  }
+}
+
+/* 核心实用工具类与质感组件 */
+@layer utilities {
+  .text-\[10px\],
+  .text-\[11px\] {
+    font-size: 0.75rem;
+    line-height: 1.4;
+  }
+
+  /* 隐藏滚动条但保留平滑滚动能力 */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* 极致高级的模拟器框架多层立体投影 */
+  .shadow-device {
+    box-shadow: 
+      0 0 0 1px rgba(15, 23, 42, 0.08),
+      0 12px 24px -6px rgba(15, 23, 42, 0.08),
+      0 24px 48px -12px rgba(15, 23, 42, 0.14),
+      0 0 0 10px rgba(255, 255, 255, 0.65);
+  }
+
+  /* 微质感高透磨砂卡片 */
+  .glass-card {
+    background-color: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+  }
+
+  /* 微卡片层次阴影 */
+  .card-subtle {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.03), 0 1px 2px -1px rgba(15, 23, 42, 0.02);
+  }
+}
+
+/* 移动端滚动容器调优 */
+.phone-scroll > * {
+  padding-bottom: 1.25rem !important;
+}
+
+.phone-scroll input:not([type="checkbox"]),
+.phone-scroll select,
+.phone-scroll textarea {
+  font-size: 0.875rem;
+  line-height: 1.4;
+}

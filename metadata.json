@@ -1,0 +1,6 @@
+{
+  "name": "智慧校园值周管理系统",
+  "description": "教师端与管理员端统一移动优先智慧校园值周管理系统，支持多角色工作台、值周排班、快速检查、工单整改、扣分申诉及周积分结算发布。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
